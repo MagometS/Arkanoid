@@ -8,8 +8,6 @@ void Block::Destroy()
 
 Block::Block(Point minLeft, Point maxRight)
 {
-	_minLeft = minLeft;
-	_maxRight = maxRight;
 	_isDestroyed = false;
 }
 

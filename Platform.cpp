@@ -2,17 +2,21 @@
 
 Platform::Platform(int x, int y)
 {
-	position = { x,y };
-	rect = { position.x,position.y,width,height };
+	this->x = x;
+	this->y = y;
+	this->h = 20;
+	this->w = 100;
+
+	rect = { x,y,w,h };
 }
 
 void Platform::Move()
 {
-	position.x += velocity;
+	x += velocity;
 
-	if ((position.x < 0) || (position.x + width > SCREEN_WIDTH))
+	if ((x < 0) || (x + w > SCREEN_WIDTH))
 	{
-		position.x -= velocity;
+		x -= velocity;
 	}
 }
 
@@ -20,7 +24,7 @@ void Platform::Render(SDL_Renderer* ren)
 {
 	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
 	SDL_RenderFillRect(ren, &rect);
-	rect = { position.x,position.y,width,height };
+	rect = { x,y,w,h };
 	SDL_SetRenderDrawColor(ren, 0, 0, 255, 0);
 	SDL_RenderFillRect(ren, &rect);
 

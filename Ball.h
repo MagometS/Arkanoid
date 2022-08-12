@@ -2,6 +2,7 @@
 #define BALL_H
 
 #include <SDL.h>
+#include <vector>
 #include "Shape.h"
 #include "Point.h"
 #include "ScreenConst.h"
@@ -12,8 +13,8 @@ class Ball : public Shape
 {
 public:
 	Ball(int x, int y);
-	void Move();
-	void OnCollision(Shape& Obstacle);
+	void Move(std::vector<Shape>& obstacles);
+	bool CheckCollision(Shape& obstacle);
 	void StartPosition();
 	void Render(SDL_Renderer* ren);
 

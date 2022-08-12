@@ -5,7 +5,7 @@
 #include <SDL.h>
 #include "ScreenConst.h"
 
-class Platform : public Shape
+class Platform : public Shape, SDL_Rect
 {
 public:
 	Platform(int x, int y);
@@ -18,8 +18,5 @@ private:
 	double velocity = 0;
 	int maxVel = 10;
 	SDL_Rect rect;
-	Point position;
-	int width = 100;
-	int height = 20;
 };
 #endif

@@ -5,10 +5,11 @@ Ball::Ball(int x, int y)
 	position = { x,y };
 	circle = { position.x,position.y,radius };
 	velocity.y = -maxVel;
-	velocity.x = maxVel;
+	//velocity.x = maxVel;
 }
 
-void Ball::Move()
+
+void Ball::Move(std::vector<Shape>& obstacles)
 {
 	isTouchedFloor = false;
 
@@ -51,4 +52,24 @@ void Ball::Render(SDL_Renderer* ren)
 	circle = { position.x,position.y,radius };
 	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);
 
+}
+
+
+bool Ball::CheckCollision(Shape& obstacle)
+{
+	int cX, cY;
+
+	//Find closest x offset
+	if (position.x < obstacle.x)
+	{
+		cX = b.x;
+	}
+	else if (a.x > b.x + b.w)
+	{
+		cX = b.x + b.w;
+	}
+	else
+	{
+		cX = a.x;
+	}
 }
