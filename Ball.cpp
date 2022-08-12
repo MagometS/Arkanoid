@@ -9,7 +9,7 @@ Ball::Ball(int x, int y)
 }
 
 
-void Ball::Move(std::vector<SDL_Rect*> obstacles)
+void Ball::Move(std::vector<Obstacle*> obstacles)
 {
 	isTouchedFloor = false;
 	bool isCollided = false;
@@ -17,7 +17,11 @@ void Ball::Move(std::vector<SDL_Rect*> obstacles)
 
 	for (auto obstacle: obstacles)
 	{
-		isCollided = CheckCollision(obstacle);
+		if (isCollided = CheckCollision(obstacle))
+		{
+			obstacle->OnCollision();
+			break;
+		}
 	}
 
 	if ((position.x - radius < 0) || (position.x + radius > SCREEN_WIDTH) || isCollided)
@@ -31,7 +35,11 @@ void Ball::Move(std::vector<SDL_Rect*> obstacles)
 
 	for (auto obstacle : obstacles)
 	{
-		isCollided = CheckCollision(obstacle);
+		if (isCollided = CheckCollision(obstacle))
+		{
+			obstacle->OnCollision();
+			break;
+		}
 	}
 
 	if ((position.y - radius < 0) || (position.y + radius > SCREEN_HEIGHT) || isCollided)
@@ -61,14 +69,14 @@ void Ball::Render(SDL_Renderer* ren)
 {
 	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
 	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);
-	SDL_SetRenderDrawColor(ren, 100, 100, 255, 0);
+	SDL_SetRenderDrawColor(ren, 100, 100, 100, 0);
 	circle = { position.x,position.y,radius };
 	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);
 
 }
 
 
-bool Ball::CheckCollision(SDL_Rect* obstacle)
+bool Ball::CheckCollision(Obstacle* obstacle)
 {
 	int cX, cY;
 

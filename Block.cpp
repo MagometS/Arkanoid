@@ -1,19 +1,35 @@
 #include "Block.h"
 
-void Block::Destroy()
+Block::Block(int x, int y)
 {
-	_isDestroyed = true;
+	isDestroyed = false;
+	this->x = x;
+	this->y = y;
+	this->h = 20;
+	this->w = 100;
+
 }
 
 
-Block::Block(Point minLeft, Point maxRight)
+void Block::Render(SDL_Renderer* ren)
 {
-	_isDestroyed = false;
+	SDL_SetRenderDrawColor(ren, 255, 100, 0, 0);
+	SDL_Rect rect = { x,y,w,h };
+	SDL_RenderFillRect(ren, &rect);
+
+	if (isDestroyed)
+	{
+		SDL_Rect rect = { x,y,w,h };
+		SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);// закрашиваем если блок уничтожен
+		SDL_RenderFillRect(ren, &rect);
+	}
 }
 
-void Block::Draw(SDL_Renderer* ren)
-{
-
-}
 
 Block::~Block() {}
+
+
+void Block::OnCollision()
+{
+	isDestroyed = true;
+}

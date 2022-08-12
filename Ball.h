@@ -8,13 +8,14 @@
 #include "ScreenConst.h"
 #include "Player.h"
 #include "SDL_Circle.h"
+#include "Obstacle.h"
 
 class Ball : public Shape
 {
 public:
 	Ball(int x, int y);
-	void Move(std::vector<SDL_Rect*> obstacles);
-	bool CheckCollision(SDL_Rect* obstacle);
+	void Move(std::vector<Obstacle*> obstacles);
+	bool CheckCollision(Obstacle* obstacle);
 	void StartPosition();
 	void Render(SDL_Renderer* ren);
 

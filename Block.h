@@ -4,19 +4,18 @@
 #include <SDL.h>
 #include "Shape.h"
 #include "Point.h"
+#include "Obstacle.h"
 
-class Block : public Shape, SDL_Rect
+class Block : public Shape, public Obstacle
 {
 public:
-	Block(Point minLeft, Point maxRight);
+	Block(int x, int y);
 	~Block();
-	//Point GetPosition() { return _minLeft; }
-	void Draw(SDL_Renderer* ren);
-	void Destroy();
-	bool isDestroyed() { return _isDestroyed; }
+	void Render(SDL_Renderer* ren);
+	virtual void OnCollision();
 
 private:
-	bool _isDestroyed;
+	bool isDestroyed;
 };
 
 #endif
