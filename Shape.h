@@ -7,9 +7,9 @@
 class Shape
 {
 public:
-	virtual Point GetPosition() = 0;
-	virtual void Update() = 0;
-	virtual void Draw(SDL_Renderer* ren) = 0;
+	//virtual Point GetPosition() = 0;
+	//bool isChanged();
+	virtual void Render(SDL_Renderer* ren) = 0;
 	virtual ~Shape() = 0;
 
 };

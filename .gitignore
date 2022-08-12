@@ -1,0 +1,6 @@
+*.vcxproj
+*.filters
+*.solution
+Debug/
+*.user
+main.cpp

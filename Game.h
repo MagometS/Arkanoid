@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include <iostream>
+#include "ScreenConst.h"
 
 class Game
 {
@@ -16,8 +17,7 @@ public:
 private:
 	SDL_Window* win = NULL;
 	SDL_Renderer* ren = NULL;
-	int SCREEN_WIDTH = 640;
-	int SCREEN_HEIGHT = 480;
+	
 
 };
 #endif
