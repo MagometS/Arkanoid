@@ -13,8 +13,8 @@ class Ball : public Shape
 {
 public:
 	Ball(int x, int y);
-	void Move(std::vector<Shape>& obstacles);
-	bool CheckCollision(Shape& obstacle);
+	void Move(std::vector<SDL_Rect*> obstacles);
+	bool CheckCollision(SDL_Rect* obstacle);
 	void StartPosition();
 	void Render(SDL_Renderer* ren);
 
@@ -22,7 +22,7 @@ private:
 	Point position ;
 	Point velocity = { 0,0 };
 	int radius = 5;
-	int maxVel = 10;
+	int maxVel = 8;
 	SDL_Circle circle{ position.x,position.y,radius };
 
 

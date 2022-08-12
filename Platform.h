@@ -5,7 +5,7 @@
 #include <SDL.h>
 #include "ScreenConst.h"
 
-class Platform : public Shape, SDL_Rect
+class Platform : public Shape, public SDL_Rect
 {
 public:
 	Platform(int x, int y);

@@ -5,23 +5,36 @@ Ball::Ball(int x, int y)
 	position = { x,y };
 	circle = { position.x,position.y,radius };
 	velocity.y = -maxVel;
-	//velocity.x = maxVel;
+	velocity.x = maxVel;
 }
 
 
-void Ball::Move(std::vector<Shape>& obstacles)
+void Ball::Move(std::vector<SDL_Rect*> obstacles)
 {
 	isTouchedFloor = false;
-
+	bool isCollided = false;
 	position.x += velocity.x;
-	position.y += velocity.y;
 
-	if ((position.x - radius < 0) || (position.x + radius > SCREEN_WIDTH))
+	for (auto obstacle: obstacles)
+	{
+		isCollided = CheckCollision(obstacle);
+	}
+
+	if ((position.x - radius < 0) || (position.x + radius > SCREEN_WIDTH) || isCollided)
 	{
 		position.x -= velocity.x;
 		velocity.x = -velocity.x;
 	}
-	if ((position.y - radius < 0) || (position.y + radius > SCREEN_HEIGHT))
+
+	isCollided = false;
+	position.y += velocity.y;
+
+	for (auto obstacle : obstacles)
+	{
+		isCollided = CheckCollision(obstacle);
+	}
+
+	if ((position.y - radius < 0) || (position.y + radius > SCREEN_HEIGHT) || isCollided)
 	{
 		position.y -= velocity.y;
 		velocity.y = -velocity.y;
@@ -55,21 +68,44 @@ void Ball::Render(SDL_Renderer* ren)
 }
 
 
-bool Ball::CheckCollision(Shape& obstacle)
+bool Ball::CheckCollision(SDL_Rect* obstacle)
 {
 	int cX, cY;
 
 	//Find closest x offset
-	if (position.x < obstacle.x)
+	if (position.x < obstacle->x)
 	{
-		cX = b.x;
+		cX = obstacle->x;
 	}
-	else if (a.x > b.x + b.w)
+	else if (position.x > obstacle->x + obstacle->w)
 	{
-		cX = b.x + b.w;
+		cX = obstacle->x + obstacle->w;
 	}
 	else
 	{
-		cX = a.x;
+		cX = position.x;
 	}
+	//Find closest y offset
+	if (position.y < obstacle->y)
+	{
+		cY = obstacle->y;
+	}
+	else if (position.y > obstacle->y + obstacle->h)
+	{
+		cY = obstacle->y + obstacle->h;
+	}
+	else
+	{
+		cY = position.y;
+	}
+
+	//If the closest point is inside the circle
+	if (((cX - position.x) * (cX - position.x) + (cY - position.y) * (cY - position.y)) < radius * radius)
+	{
+		//This box and the circle have collided
+		return true;
+	}
+
+	//If the shapes have not collided
+	return false;
 }
