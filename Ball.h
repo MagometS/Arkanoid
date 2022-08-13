@@ -14,7 +14,7 @@ class Ball : public Shape
 {
 public:
 	Ball(int x, int y);
-	void Move(std::vector<Obstacle*> obstacles);
+	void Move(std::vector<Obstacle*>& obstacles);
 	bool CheckCollision(Obstacle* obstacle);
 	void StartPosition();
 	void Render(SDL_Renderer* ren);

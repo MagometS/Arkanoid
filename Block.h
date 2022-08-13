@@ -10,12 +10,11 @@ class Block : public Shape, public Obstacle
 {
 public:
 	Block(int x, int y);
-	~Block();
+	Block();
+	virtual ~Block();
 	void Render(SDL_Renderer* ren);
 	virtual void OnCollision();
-
-private:
-	bool isDestroyed;
+	void Destroy();
 };
 
 #endif

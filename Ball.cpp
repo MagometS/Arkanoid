@@ -9,18 +9,36 @@ Ball::Ball(int x, int y)
 }
 
 
-void Ball::Move(std::vector<Obstacle*> obstacles)
+void Ball::Move(std::vector<Obstacle*>& obstacles)
 {
 	isTouchedFloor = false;
 	bool isCollided = false;
 	position.x += velocity.x;
 
-	for (auto obstacle: obstacles)
+	//for (int i = 0; i < obstacles.size(); i++)
+	std::vector<Obstacle*>::iterator obsIter = obstacles.begin();
+	for (;obsIter != obstacles.end();)
 	{
-		if (isCollided = CheckCollision(obstacle))
+		//if (isCollided = CheckCollision(obstacles[i]))
+		if(isCollided = CheckCollision(*obsIter))
 		{
-			obstacle->OnCollision();
+			//obstacles[i]->OnCollision();
+			//obstacles[obstacles.end() - obsIter]->OnCollision();
+			(*obsIter)->OnCollision();
+			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
+			{
+				//obstacles.erase(obstacles.begin() + i);//Удаляем препятствие из списка
+				obsIter = obstacles.erase(obsIter);
+			}
+			else
+			{
+				++obsIter;
+			}
 			break;
+		}
+		else
+		{
+			++obsIter;
 		}
 	}
 
@@ -32,15 +50,47 @@ void Ball::Move(std::vector<Obstacle*> obstacles)
 
 	isCollided = false;
 	position.y += velocity.y;
-
-	for (auto obstacle : obstacles)
+	/*
+	for (int i = 0; i < obstacles.size(); i++)
 	{
-		if (isCollided = CheckCollision(obstacle))
+		if (isCollided = CheckCollision(obstacles[i]))
 		{
-			obstacle->OnCollision();
+			obstacles[i]->OnCollision();
+			if (obstacles[i]->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
+			{
+				obstacles.erase(obstacles.begin() + i);
+			}
 			break;
 		}
 	}
+	*/
+
+	obsIter = obstacles.begin();
+	for (; obsIter != obstacles.end();)
+	{
+		//if (isCollided = CheckCollision(obstacles[i]))
+		if (isCollided = CheckCollision(*obsIter))
+		{
+			//obstacles[i]->OnCollision();
+			//obstacles[obstacles.end() - obsIter]->OnCollision();
+			(*obsIter)->OnCollision();
+			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
+			{
+				//obstacles.erase(obstacles.begin() + i);//Удаляем препятствие из списка
+				obsIter = obstacles.erase(obsIter);
+			}
+			else
+			{
+				++obsIter;
+			}
+			break;
+		}
+		else
+		{
+			++obsIter;
+		}
+	}
+
 
 	if ((position.y - radius < 0) || (position.y + radius > SCREEN_HEIGHT) || isCollided)
 	{
@@ -69,7 +119,7 @@ void Ball::Render(SDL_Renderer* ren)
 {
 	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
 	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);
-	SDL_SetRenderDrawColor(ren, 100, 100, 100, 0);
+	SDL_SetRenderDrawColor(ren, 138, 43, 226, 0);
 	circle = { position.x,position.y,radius };
 	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);
 
