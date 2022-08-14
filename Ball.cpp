@@ -15,19 +15,14 @@ void Ball::Move(std::vector<Obstacle*>& obstacles)
 	bool isCollided = false;
 	position.x += velocity.x;
 
-	//for (int i = 0; i < obstacles.size(); i++)
 	std::vector<Obstacle*>::iterator obsIter = obstacles.begin();
 	for (;obsIter != obstacles.end();)
 	{
-		//if (isCollided = CheckCollision(obstacles[i]))
 		if(isCollided = CheckCollision(*obsIter))
 		{
-			//obstacles[i]->OnCollision();
-			//obstacles[obstacles.end() - obsIter]->OnCollision();
 			(*obsIter)->OnCollision();
 			if ((*obsIter)->isDestroyed())// „тобы потом не искать уничтоженные преп€тстви€ в цикле, провер€ем то с которым столкнулись
 			{
-				//obstacles.erase(obstacles.begin() + i);//”дал€ем преп€тствие из списка
 				obsIter = obstacles.erase(obsIter);
 			}
 			else
@@ -50,33 +45,15 @@ void Ball::Move(std::vector<Obstacle*>& obstacles)
 
 	isCollided = false;
 	position.y += velocity.y;
-	/*
-	for (int i = 0; i < obstacles.size(); i++)
-	{
-		if (isCollided = CheckCollision(obstacles[i]))
-		{
-			obstacles[i]->OnCollision();
-			if (obstacles[i]->isDestroyed())// „тобы потом не искать уничтоженные преп€тстви€ в цикле, провер€ем то с которым столкнулись
-			{
-				obstacles.erase(obstacles.begin() + i);
-			}
-			break;
-		}
-	}
-	*/
 
 	obsIter = obstacles.begin();
 	for (; obsIter != obstacles.end();)
 	{
-		//if (isCollided = CheckCollision(obstacles[i]))
 		if (isCollided = CheckCollision(*obsIter))
 		{
-			//obstacles[i]->OnCollision();
-			//obstacles[obstacles.end() - obsIter]->OnCollision();
 			(*obsIter)->OnCollision();
 			if ((*obsIter)->isDestroyed())// „тобы потом не искать уничтоженные преп€тстви€ в цикле, провер€ем то с которым столкнулись
 			{
-				//obstacles.erase(obstacles.begin() + i);//”дал€ем преп€тствие из списка
 				obsIter = obstacles.erase(obsIter);
 			}
 			else
@@ -117,12 +94,13 @@ void Ball::StartPosition()
 
 void Ball::Render(SDL_Renderer* ren)
 {
+	/*
 	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
-	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);
+	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);//Ќе нужно, тк рендер очищщаетс€ каждый кадр
+	*/
 	SDL_SetRenderDrawColor(ren, 138, 43, 226, 0);
 	circle = { position.x,position.y,radius };
 	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);
-
 }
 
 

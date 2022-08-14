@@ -22,8 +22,10 @@ void Platform::Move()
 
 void Platform::Render(SDL_Renderer* ren)
 {
+	/*
 	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
 	SDL_RenderFillRect(ren, &rect);
+	*/
 	rect = { x,y,w,h };
 	SDL_SetRenderDrawColor(ren, 0, 0, 255, 0);
 	SDL_RenderFillRect(ren, &rect);

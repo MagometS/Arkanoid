@@ -24,13 +24,14 @@ Block::Block()
 void Block::Render(SDL_Renderer* ren)
 {
 	SDL_Rect rect = { x,y,w,h };
-
+	/*
 	if (_isDestroyed)
 	{
 		SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);// закрашиваем если блок уничтожен
 		SDL_RenderFillRect(ren, &rect);
 		return;
 	}
+	*/
 	SDL_SetRenderDrawColor(ren, 255, 100, 0, 0);
 	SDL_RenderFillRect(ren, &rect);
 }
