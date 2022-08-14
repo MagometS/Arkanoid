@@ -3,14 +3,14 @@
 
 #include <SDL.h>
 #include <vector>
-#include "Shape.h"
 #include "Point.h"
 #include "ScreenConst.h"
 #include "Player.h"
 #include "SDL_Circle.h"
 #include "Obstacle.h"
+#include "Color.h"
 
-class Ball : public Shape
+class Ball
 {
 public:
 	Ball(int x, int y);
@@ -24,7 +24,8 @@ private:
 	Point velocity = { 0,0 };
 	int radius = 5;
 	int maxVel = 8;
-	SDL_Circle circle{ position.x,position.y,radius };
+	Color color = { 34, 139, 34 ,0 };
+	//SDL_Circle circle{ position.x,position.y,radius };
 
 
 	bool isTouchedFloor = false;

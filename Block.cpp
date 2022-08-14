@@ -32,7 +32,7 @@ void Block::Render(SDL_Renderer* ren)
 		return;
 	}
 	*/
-	SDL_SetRenderDrawColor(ren, 255, 100, 0, 0);
+	SDL_SetRenderDrawColor(ren, color.r, color.g, color.b, color.a);
 	SDL_RenderFillRect(ren, &rect);
 }
 

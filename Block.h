@@ -2,11 +2,11 @@
 #define BLOCK_H 
 
 #include <SDL.h>
-#include "Shape.h"
 #include "Point.h"
 #include "Obstacle.h"
+#include "Color.h"
 
-class Block : public Shape, public Obstacle
+class Block : public Obstacle
 {
 public:
 	Block(int x, int y);
@@ -15,6 +15,9 @@ public:
 	void Render(SDL_Renderer* ren);
 	virtual void OnCollision();
 	void Destroy();
+
+private:
+	Color color = { 255, 99, 71 ,0 };
 };
 
 #endif

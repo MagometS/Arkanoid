@@ -6,8 +6,6 @@ Platform::Platform(int x, int y)
 	this->y = y;
 	this->h = 20;
 	this->w = 100;
-
-	rect = { x,y,w,h };
 }
 
 void Platform::Move()
@@ -26,8 +24,8 @@ void Platform::Render(SDL_Renderer* ren)
 	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
 	SDL_RenderFillRect(ren, &rect);
 	*/
-	rect = { x,y,w,h };
-	SDL_SetRenderDrawColor(ren, 0, 0, 255, 0);
+	SDL_Rect rect = { x,y,w,h };
+	SDL_SetRenderDrawColor(ren, color.r, color.g, color.b, color.a);
 	SDL_RenderFillRect(ren, &rect);
 
 }

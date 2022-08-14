@@ -2,11 +2,11 @@
 #define PLATFORM_H
 
 #include <SDL.h>
-#include "Shape.h"
 #include "ScreenConst.h"
 #include "Obstacle.h"
+#include "Color.h"
 
-class Platform : public Shape, public Obstacle
+class Platform : public Obstacle
 {
 public:
 	Platform(int x, int y);
@@ -17,6 +17,6 @@ public:
 private:
 	double velocity = 0;
 	int maxVel = 10;
-	SDL_Rect rect;
+	Color color = { 32, 178, 170, 0};
 };
 #endif

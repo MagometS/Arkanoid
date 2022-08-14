@@ -3,7 +3,6 @@
 Ball::Ball(int x, int y)
 {
 	position = { x,y };
-	circle = { position.x,position.y,radius };
 	velocity.y = -maxVel;
 	velocity.x = maxVel;
 }
@@ -98,9 +97,9 @@ void Ball::Render(SDL_Renderer* ren)
 	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
 	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);//Не нужно, тк рендер очищщается каждый кадр
 	*/
-	SDL_SetRenderDrawColor(ren, 138, 43, 226, 0);
-	circle = { position.x,position.y,radius };
-	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);
+	SDL_SetRenderDrawColor(ren, color.r, color.g, color.b, color.a);
+	//circle = { position.x,position.y,radius };
+	SDL_RenderFillCircle(ren, position.x, position.y, radius);
 }
 
 
