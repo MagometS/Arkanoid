@@ -24,14 +24,6 @@ Block::Block()
 void Block::Render(SDL_Renderer* ren)
 {
 	SDL_Rect rect = { x,y,w,h };
-	/*
-	if (_isDestroyed)
-	{
-		SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);// закрашиваем если блок уничтожен
-		SDL_RenderFillRect(ren, &rect);
-		return;
-	}
-	*/
 	SDL_SetRenderDrawColor(ren, color.r, color.g, color.b, color.a);
 	SDL_RenderFillRect(ren, &rect);
 }
@@ -40,7 +32,11 @@ void Block::Render(SDL_Renderer* ren)
 Block::~Block() {}
 
 
-void Block::OnCollision()
+void Block::OnCollision(Player& player)
 {
+
+	player.PlusScore(1);
+
 	_isDestroyed = true;
+
 }

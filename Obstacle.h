@@ -2,13 +2,14 @@
 #define OBSTACLE_H
 
 #include <SDL.h>
+#include "Shape.h"
+#include "Player.h"
 
-class Obstacle : public SDL_Rect
+class Obstacle : public SDL_Rect, public Shape
 {
 public:
-	virtual void OnCollision() = 0;
+	virtual void OnCollision(Player& player) = 0;
 	bool isDestroyed()const { return _isDestroyed; }
-	virtual void Render(SDL_Renderer* ren) = 0;
 
 protected:
 	bool _isDestroyed = false;

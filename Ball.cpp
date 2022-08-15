@@ -8,18 +8,19 @@ Ball::Ball(int x, int y)
 }
 
 
-void Ball::Move(std::vector<Obstacle*>& obstacles)
+void Ball::Move(std::vector<Obstacle*>& obstacles, Player& player)
 {
-	isTouchedFloor = false;
 	bool isCollided = false;
 	position.x += velocity.x;
+
 
 	std::vector<Obstacle*>::iterator obsIter = obstacles.begin();
 	for (;obsIter != obstacles.end();)
 	{
 		if(isCollided = CheckCollision(*obsIter))
 		{
-			(*obsIter)->OnCollision();
+			(*obsIter)->OnCollision(player);
+
 			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
 			{
 				obsIter = obstacles.erase(obsIter);
@@ -45,12 +46,14 @@ void Ball::Move(std::vector<Obstacle*>& obstacles)
 	isCollided = false;
 	position.y += velocity.y;
 
+
 	obsIter = obstacles.begin();
 	for (; obsIter != obstacles.end();)
 	{
 		if (isCollided = CheckCollision(*obsIter))
 		{
-			(*obsIter)->OnCollision();
+			(*obsIter)->OnCollision(player);
+
 			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
 			{
 				obsIter = obstacles.erase(obsIter);
@@ -70,15 +73,14 @@ void Ball::Move(std::vector<Obstacle*>& obstacles)
 
 	if ((position.y - radius < 0) || (position.y + radius > SCREEN_HEIGHT) || isCollided)
 	{
-		position.y -= velocity.y;
-		velocity.y = -velocity.y;
-
 		if (position.y + radius > SCREEN_HEIGHT)
 		{
-			isTouchedFloor = true;
+			player.MinusHealth();// при касании пола уменьшаем количество жизней
 		}
-	}
 
+		position.y -= velocity.y;
+		velocity.y = -velocity.y;
+	}
 
 }
 
@@ -93,12 +95,7 @@ void Ball::StartPosition()
 
 void Ball::Render(SDL_Renderer* ren)
 {
-	/*
-	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
-	SDL_RenderFillCircle(ren, circle.x, circle.y, circle.rad);//Не нужно, тк рендер очищщается каждый кадр
-	*/
 	SDL_SetRenderDrawColor(ren, color.r, color.g, color.b, color.a);
-	//circle = { position.x,position.y,radius };
 	SDL_RenderFillCircle(ren, position.x, position.y, radius);
 }
 

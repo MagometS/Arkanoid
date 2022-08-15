@@ -9,17 +9,31 @@
 #include "SDL_Circle.h"
 #include "Obstacle.h"
 #include "Color.h"
+#include "Player.h"
 
 class Ball
 {
+
 public:
+
+
 	Ball(int x, int y);
-	void Move(std::vector<Obstacle*>& obstacles);
+
+
+	void Move(std::vector<Obstacle*>& obstacles,Player& player);
+
+
 	bool CheckCollision(Obstacle* obstacle);
+
+
 	void StartPosition();
+
+
 	void Render(SDL_Renderer* ren);
 
 private:
+
+
 	Point position ;
 	Point velocity = { 0,0 };
 	int radius = 5;
