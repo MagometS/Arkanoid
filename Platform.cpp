@@ -1,5 +1,15 @@
 #include "Platform.h"
 
+Platform::Platform()
+{
+	this->x = 0;
+	this->y = SCREEN_HEIGHT - w;
+	this->h = 20;
+	this->w = 100;
+
+}
+
+
 Platform::Platform(int x, int y)
 {
 	this->x = x;

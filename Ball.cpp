@@ -1,5 +1,15 @@
 #include "Ball.h"
 
+
+Ball::Ball()
+{
+	position = { radius,radius };
+	velocity.y = -maxVel;
+	velocity.x = maxVel;
+
+}
+
+
 Ball::Ball(int x, int y)
 {
 	position = { x,y };
@@ -139,5 +149,21 @@ bool Ball::CheckCollision(Obstacle* obstacle)
 	}
 
 	//If the shapes have not collided
+	return false;
+}
+
+
+bool Ball::CheckCollision(Ball& ball)
+{
+	Point secondPosition = ball.GetPosition();
+	int secondRadius = ball.GetRadius();
+
+	int totalRadius = this->radius + secondRadius;
+	int deltaX = position.x - secondPosition.x;
+	int deltaY = position.y - secondPosition.y;
+	if ((deltaX * deltaX + deltaY * deltaY) < totalRadius * totalRadius)
+	{
+		return true;
+	}
 	return false;
 }

@@ -11,7 +11,8 @@ class Platform : public Obstacle
 {
 public:
 
-
+	
+	Platform();
 	Platform(int x, int y);
 
 
@@ -21,10 +22,10 @@ public:
 	void OnEvent(SDL_Event& e);
 
 
-	void Render(SDL_Renderer* ren);
+	void Render(SDL_Renderer* ren) override;
 
 
-	void OnCollision(Player& player) { return; }
+	void OnCollision(Player& player) override { return; }
 
 
 private:

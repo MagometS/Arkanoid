@@ -10,16 +10,15 @@ ScoreBoard::ScoreBoard()
 
 void ScoreBoard::Render(SDL_Renderer* gRenderer, Player player)
 {
+	SDL_FreeSurface(surfaceMessage);
+	SDL_DestroyTexture(Message);
+
 	sprintf(str, "Score %i    Health %i", player.GetScore(), player.GetHealth());
 
 	surfaceMessage = TTF_RenderText_Solid(text, str, { 255, 255, 255 });
 	Message = SDL_CreateTextureFromSurface(gRenderer, surfaceMessage);
 
 	SDL_RenderCopy(gRenderer, Message, NULL, &Message_rect);
-
-	SDL_FreeSurface(surfaceMessage);
-	SDL_DestroyTexture(Message);
-
 }
 
 
@@ -27,4 +26,5 @@ void ScoreBoard::Close()
 {
 	SDL_FreeSurface(surfaceMessage);
 	SDL_DestroyTexture(Message);
+	text = NULL;
 }

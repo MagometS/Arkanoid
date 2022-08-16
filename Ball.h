@@ -11,12 +11,13 @@
 #include "Color.h"
 #include "Player.h"
 
-class Ball
+class Ball 
 {
 
 public:
 
 
+	Ball();
 	Ball(int x, int y);
 
 
@@ -24,6 +25,7 @@ public:
 
 
 	bool CheckCollision(Obstacle* obstacle);
+	bool CheckCollision(Ball& ball);
 
 
 	void StartPosition();
@@ -31,15 +33,21 @@ public:
 
 	void Render(SDL_Renderer* ren);
 
+
+	Point GetPosition() { return position; }
+
+
+	int GetRadius() { return radius; }
+
+
 private:
 
 
-	Point position ;
+	Point position;
 	Point velocity = { 0,0 };
 	int radius = 5;
 	int maxVel = 8;
 	Color color = { 34, 139, 34 ,0 };
-	//SDL_Circle circle{ position.x,position.y,radius };
 
 
 	bool isTouchedFloor = false;

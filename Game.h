@@ -2,16 +2,21 @@
 #define GAME_H
 
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <iostream>
 #include "ScreenConst.h"
 #include "Platform.h"
 #include "Ball.h"
 #include "Block.h"
 #include "Player.h"
+#include "ScoreBoard.h"
 
 class Game
 {
 public:
+
+
+	Game();
 
 
 	bool Init();
@@ -39,6 +44,9 @@ private:
 	Ball ball;
 	std::vector<Obstacle*>obstacles;
 	Player player;
+	///std::vector<Block> blocks;
+	Block blocks[18];
+	ScoreBoard scoreBoard;
 
 
 };

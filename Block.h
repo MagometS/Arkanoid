@@ -18,10 +18,10 @@ public:
 	virtual ~Block();
 
 
-	void Render(SDL_Renderer* ren);
+	void Render(SDL_Renderer* ren) override;
 
 
-	virtual void OnCollision(Player& player);
+	virtual void OnCollision(Player& player) override;
 
 
 private:

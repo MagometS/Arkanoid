@@ -7,6 +7,7 @@ class Player
 public:
 
 
+	Player() { health = 10; }
 	Player(int health);
 
 
