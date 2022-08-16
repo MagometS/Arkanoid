@@ -21,7 +21,7 @@ public:
 	void Render(SDL_Renderer* ren) override;
 
 
-	virtual void OnCollision(Player& player) override;
+	void OnCollision(Player& player) override;
 
 
 private:

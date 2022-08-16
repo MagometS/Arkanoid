@@ -5,9 +5,12 @@
 #include "Platform.h"
 #include "Color.h"
 
-class Bonus : SDL_Rect
+class Bonus : public SDL_Rect
 {
 public:
+
+	Bonus();
+	Bonus(int x, int y);
 
 
 	void Move() { y += velocity; }
@@ -26,6 +29,7 @@ public:
 
 
 	void Destroy() { _isActivated = false; }
+
 
 private:
 

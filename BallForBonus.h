@@ -11,6 +11,9 @@ public:
 	bool isActivated() { return _isActivated; }
 
 
+	void Activate() { _isActivated = true; }
+
+
 private:
 
 

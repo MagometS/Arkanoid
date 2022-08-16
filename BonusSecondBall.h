@@ -2,17 +2,23 @@
 #define BONUSSECONDBALL_H
 
 #include "Bonus.h"
-#include "Ball.h"
+#include "BallForBonus.h"
 
 class BonusSecondBall : public Bonus
 {
 public:
 
 
+	BonusSecondBall(int x, int y, BallForBonus* ball);
+
+
+	void MakeAction();
+
+
 private:
 
 
-	Ball* ball;
+	BallForBonus* ball;
 };
 #endif // !BONUSSECONDBALL_H
 
