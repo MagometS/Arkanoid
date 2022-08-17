@@ -116,7 +116,7 @@ void Game::Loop()
 			platform.OnEvent(e);
 		}
 
-		platform.Move();
+		//platform.Move();
 		ball.Move(obstacles, player);
 
 		this->OnRender();

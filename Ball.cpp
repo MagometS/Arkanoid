@@ -100,6 +100,7 @@ void Ball::StartPosition()
 	position.x = SCREEN_WIDTH / 2;
 	position.y = SCREEN_HEIGHT - 55;
 	velocity.y = maxVel;
+	velocity.x = maxVel;
 }
 
 
@@ -166,4 +167,13 @@ bool Ball::CheckCollision(Ball& ball)
 		return true;
 	}
 	return false;
+}
+
+
+void Ball::SetColor(int r, int g, int b, int a)
+{
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.a = a;
 }

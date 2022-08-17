@@ -2,10 +2,13 @@
 #define PLATFORM_H
 
 #include <SDL.h>
+#include <vector>
 #include "ScreenConst.h"
 #include "Obstacle.h"
 #include "Color.h"
+#include "Bonus.h"
 #include "Player.h"
+
 
 class Platform : public Obstacle
 {
@@ -16,7 +19,7 @@ public:
 	Platform(int x, int y);
 
 
-	void Move();
+	void Move(std::vector<Bonus*> bonuses);
 
 
 	void OnEvent(SDL_Event& e);
@@ -26,6 +29,9 @@ public:
 
 
 	void OnCollision(Player& player) override { return; }
+
+
+	bool CheckCollision(typename Bonus* bonus);
 
 
 private:

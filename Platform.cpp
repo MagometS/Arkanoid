@@ -18,27 +18,32 @@ Platform::Platform(int x, int y)
 	this->w = 100;
 }
 
-void Platform::Move()
+
+void Platform::Move(std::vector<Bonus*> bonuses)
 {
 	x += velocity;
 
+	for (int i = 0; i < bonuses.size(); i++)
+	{
+		if (CheckCollision(bonuses[i]))
+		{
+			bonuses[i]->MakeAction();
+		}
+	}
 	if ((x < 0) || (x + w > SCREEN_WIDTH))
 	{
 		x -= velocity;
 	}
 }
 
+
 void Platform::Render(SDL_Renderer* ren)
 {
-	/*
-	SDL_SetRenderDrawColor(ren, 0, 0, 0, 0);
-	SDL_RenderFillRect(ren, &rect);
-	*/
 	SDL_Rect rect = { x,y,w,h };
 	SDL_SetRenderDrawColor(ren, color.r, color.g, color.b, color.a);
 	SDL_RenderFillRect(ren, &rect);
-
 }
+
 
 void Platform::OnEvent(SDL_Event& e)
 {
@@ -61,4 +66,17 @@ void Platform::OnEvent(SDL_Event& e)
 		case SDLK_RIGHT: velocity -= maxVel; break;
 		}
 	}
+}
+
+
+bool Platform::CheckCollision(Bonus* bonus)
+{
+	if ((bonus->y + bonus->h) > this->y)
+	{
+		if (bonus->x > this->x && (bonus->x + bonus->w) < (this->x + this->w))
+		{
+			return true;
+		}
+	}
+	return false;
 }

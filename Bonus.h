@@ -2,7 +2,6 @@
 #define BONUS_H
 
 #include <SDL.h>
-#include "Platform.h"
 #include "Color.h"
 
 class Bonus : public SDL_Rect

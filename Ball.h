@@ -9,7 +9,6 @@
 #include "SDL_Circle.h"
 #include "Obstacle.h"
 #include "Color.h"
-#include "Player.h"
 
 class Ball 
 {
@@ -40,6 +39,9 @@ public:
 	int GetRadius() { return radius; }
 
 
+	void SetColor(int r, int g, int b, int a);
+
+
 private:
 
 
@@ -47,7 +49,7 @@ private:
 	Point velocity = { 0,0 };
 	int radius = 5;
 	int maxVel = 8;
-	Color color = { 34, 139, 34 ,0 };
+	Color color = { 127, 255, 212, 0 };
 
 
 	bool isTouchedFloor = false;
