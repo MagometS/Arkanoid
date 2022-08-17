@@ -24,7 +24,7 @@ public:
 	void OnCollision(Player& player) override;
 
 
-private:
+protected:
 
 
 	Color color = { 255, 99, 71 ,0 };

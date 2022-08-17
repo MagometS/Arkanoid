@@ -13,7 +13,7 @@ public:
 	~BlockBonus() { bonus = NULL; }
 
 
-	virtual void OnCollision(Player& player);
+	void OnCollision(Player& player) override;
 
 
 private:

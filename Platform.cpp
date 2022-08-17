@@ -23,7 +23,7 @@ void Platform::Move(std::vector<Bonus*> bonuses)
 {
 	x += velocity;
 
-	for (int i = 0; i < bonuses.size(); i++)
+	for (int i = 0; i  < bonuses.size(); i++)
 	{
 		if (CheckCollision(bonuses[i]))
 		{
@@ -71,7 +71,7 @@ void Platform::OnEvent(SDL_Event& e)
 
 bool Platform::CheckCollision(Bonus* bonus)
 {
-	if ((bonus->y + bonus->h) > this->y)
+	if ((bonus->y + bonus->h) > this->y && bonus->y < (this->y + this->h))
 	{
 		if (bonus->x > this->x && (bonus->x + bonus->w) < (this->x + this->w))
 		{

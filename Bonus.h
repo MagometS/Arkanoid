@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include "Color.h"
+#include "ScreenConst.h"
 
 class Bonus : public SDL_Rect
 {
@@ -12,7 +13,7 @@ public:
 	Bonus(int x, int y);
 
 
-	void Move() { y += velocity; }
+	void Move();
 
 
 	bool isActivated() { return _isActivated; }

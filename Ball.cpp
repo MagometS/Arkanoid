@@ -95,6 +95,95 @@ void Ball::Move(std::vector<Obstacle*>& obstacles, Player& player)
 }
 
 
+void Ball::Move(std::vector<Obstacle*>& obstacles, Player& player, Ball* secondBall)
+{
+	bool isCollided = false;
+	bool isCollidedWithBall = false;
+	position.x += velocity.x;
+
+	if (isCollidedWithBall = CheckCollision(secondBall) && secondBall->GetVelocity().x * velocity.x < 0)//если мячи двигались навстречу отбросим и второй мяч
+	{
+		secondBall->ChangeDirection_X();
+	}
+
+
+	std::vector<Obstacle*>::iterator obsIter = obstacles.begin();
+	for (; obsIter != obstacles.end();)
+	{
+		if (isCollided = CheckCollision(*obsIter))
+		{
+			(*obsIter)->OnCollision(player);
+
+			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
+			{
+				obsIter = obstacles.erase(obsIter);
+			}
+			else
+			{
+				++obsIter;
+			}
+			break;
+		}
+		else
+		{
+			++obsIter;
+		}
+	}
+
+	if ((position.x - radius < 0) || (position.x + radius > SCREEN_WIDTH) || isCollided || isCollidedWithBall)
+	{
+		position.x -= velocity.x;
+		velocity.x = -velocity.x;
+	}
+
+	isCollided = false;
+	isCollidedWithBall = false;
+	position.y += velocity.y;
+
+	if (isCollidedWithBall = CheckCollision(secondBall) && secondBall->GetVelocity().y * velocity.y < 0)//если мячи двигались навстречу отбросим и второй мяч
+	{
+		secondBall->ChangeDirection_Y();
+	}
+
+	obsIter = obstacles.begin();
+	for (; obsIter != obstacles.end();)
+	{
+		if (isCollided = CheckCollision(*obsIter))
+		{
+			(*obsIter)->OnCollision(player);
+
+			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
+			{
+				obsIter = obstacles.erase(obsIter);
+			}
+			else
+			{
+				++obsIter;
+			}
+			break;
+		}
+		else
+		{
+			++obsIter;
+		}
+	}
+
+
+	if ((position.y - radius < 0) || (position.y + radius > SCREEN_HEIGHT) || isCollided || isCollidedWithBall)
+	{
+		if (position.y + radius > SCREEN_HEIGHT)
+		{
+			player.MinusHealth();// при касании пола уменьшаем количество жизней
+		}
+
+		position.y -= velocity.y;
+		velocity.y = -velocity.y;
+	}
+
+}
+
+
+
 void Ball::StartPosition()
 {
 	position.x = SCREEN_WIDTH / 2;
@@ -154,10 +243,10 @@ bool Ball::CheckCollision(Obstacle* obstacle)
 }
 
 
-bool Ball::CheckCollision(Ball& ball)
+bool Ball::CheckCollision(Ball* ball)
 {
-	Point secondPosition = ball.GetPosition();
-	int secondRadius = ball.GetRadius();
+	Point secondPosition = ball->GetPosition();
+	int secondRadius = ball->GetRadius();
 
 	int totalRadius = this->radius + secondRadius;
 	int deltaX = position.x - secondPosition.x;
