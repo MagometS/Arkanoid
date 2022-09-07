@@ -3,6 +3,7 @@
 
 #include "Block.h"
 #include "Bonus.h"
+#include "Ball.h"
 
 class BlockBonus : public Block
 {
@@ -13,7 +14,7 @@ public:
 	~BlockBonus() { bonus = NULL; }
 
 
-	void OnCollision(Player& player) override;
+	void OnCollision(Player& player,Ball* ball) override;
 
 
 private:

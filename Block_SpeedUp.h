@@ -19,7 +19,7 @@ public:
 	~Block_SpeedUp() {}
 
 
-	void OnCollision(Player& player, Ball& ball);
+	void OnCollision(Player& player, Ball* ball) override;
 };
 #endif // !BLOCK_SPEEDUP_H
 

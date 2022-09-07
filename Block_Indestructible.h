@@ -17,7 +17,7 @@ public:
 	}
 
 
-	void OnCollision(Player& player) override
+	void OnCollision(Player& player, Ball* ball) override
 	{
 		return;
 	};

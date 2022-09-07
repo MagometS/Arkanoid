@@ -9,7 +9,7 @@ BlockBonus::BlockBonus(int x, int y, Bonus* ptr)
 }
 
 
-void BlockBonus::OnCollision(Player& player)
+void BlockBonus::OnCollision(Player& player, Ball* ball)
 {
 	player.PlusScore(1);
 

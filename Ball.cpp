@@ -29,7 +29,7 @@ void Ball::Move(std::vector<Obstacle*>& obstacles, Player& player)
 	{
 		if(isCollided = CheckCollision(*obsIter))
 		{
-			(*obsIter)->OnCollision(player);
+			(*obsIter)->OnCollision(player, this);
 
 			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
 			{
@@ -62,7 +62,7 @@ void Ball::Move(std::vector<Obstacle*>& obstacles, Player& player)
 	{
 		if (isCollided = CheckCollision(*obsIter))
 		{
-			(*obsIter)->OnCollision(player);
+			(*obsIter)->OnCollision(player, this);
 
 			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
 			{
@@ -112,7 +112,7 @@ void Ball::Move(std::vector<Obstacle*>& obstacles, Player& player, Ball* secondB
 	{
 		if (isCollided = CheckCollision(*obsIter))
 		{
-			(*obsIter)->OnCollision(player);
+			(*obsIter)->OnCollision(player, this);
 
 			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
 			{
@@ -150,7 +150,7 @@ void Ball::Move(std::vector<Obstacle*>& obstacles, Player& player, Ball* secondB
 	{
 		if (isCollided = CheckCollision(*obsIter))
 		{
-			(*obsIter)->OnCollision(player);
+			(*obsIter)->OnCollision(player, this);
 
 			if ((*obsIter)->isDestroyed())// Чтобы потом не искать уничтоженные препятствия в цикле, проверяем то с которым столкнулись
 			{

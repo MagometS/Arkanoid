@@ -32,7 +32,7 @@ void Block::Render(SDL_Renderer* ren)
 Block::~Block() {}
 
 
-void Block::OnCollision(Player& player)
+void Block::OnCollision(Player& player, Ball* ball)
 {
 
 	player.PlusScore(1);

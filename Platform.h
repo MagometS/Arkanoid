@@ -8,7 +8,7 @@
 #include "Color.h"
 #include "Bonus.h"
 #include "Player.h"
-
+#include "Ball.h"
 
 class Platform : public Obstacle
 {
@@ -28,7 +28,7 @@ public:
 	void Render(SDL_Renderer* ren) override;
 
 
-	void OnCollision(Player& player) override { return; }
+	void OnCollision(Player& player, Ball* ball) override { return; }
 
 
 	bool CheckCollision(typename Bonus* bonus);
