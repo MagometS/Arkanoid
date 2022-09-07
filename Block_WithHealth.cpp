@@ -6,6 +6,7 @@ Block_WithHealth::Block_WithHealth(int x, int y, int health)
 	this->x = x;
 	this->y = y;
 	this->health = health;
+	color = { 255, 255, 0 ,0 };
 }
 
 
