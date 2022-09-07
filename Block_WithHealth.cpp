@@ -10,7 +10,7 @@ Block_WithHealth::Block_WithHealth(int x, int y, int health)
 }
 
 
-void Block_WithHealth::OnCollision(Player& player)
+void Block_WithHealth::OnCollision(Player& player, Ball* ball)
 {
 	player.PlusScore(1);
 
