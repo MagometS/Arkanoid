@@ -11,6 +11,7 @@ public:
 
 	Bonus();
 	Bonus(int x, int y);
+	virtual ~Bonus();
 
 
 	void Move();

@@ -6,7 +6,6 @@ Ball::Ball()
 	position = { radius,radius };
 	velocity.y = -maxVel;
 	velocity.x = maxVel;
-
 }
 
 

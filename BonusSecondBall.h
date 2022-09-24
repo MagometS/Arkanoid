@@ -10,6 +10,7 @@ public:
 
 
 	BonusSecondBall(int x, int y, BallForBonus* ball);
+	~BonusSecondBall();
 
 
 	void MakeAction();

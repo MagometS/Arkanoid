@@ -8,6 +8,12 @@ BonusSecondBall::BonusSecondBall(int x, int y, BallForBonus* ball)
 }
 
 
+BonusSecondBall::~BonusSecondBall()
+{
+	this->ball = NULL;
+}
+
+
 void BonusSecondBall::MakeAction()
 {
 	ball->Activate();

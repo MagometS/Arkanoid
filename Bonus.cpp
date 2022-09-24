@@ -20,6 +20,12 @@ Bonus::Bonus(int x, int y)
 }
 
 
+Bonus::~Bonus()
+{
+
+}
+
+
 void Bonus::Render(SDL_Renderer* ren)
 {
 	SDL_Rect rect = { x,y,w,h };
