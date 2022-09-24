@@ -25,6 +25,9 @@ void Block_Moving::OnCollision(Player& player, Ball* ball)
 void Block_Moving::Move(std::vector<Obstacle*>& obstacles)
 {
 	bool isCollided = false;
+
+	this->x += vel;
+
 	for (int i = 0; i < obstacles.size(); i++)
 	{
 		if (obstacles[i] == this)

@@ -18,8 +18,18 @@ public:
 
 	bool isActivated() { return _isActivated; }
 
+
+	bool isMaterial() { return _isMaterial; }
+
 	
-	void Activate() { _isActivated = true; }
+	void Activate() 
+	{
+		_isActivated = true;
+		_isMaterial = true;
+	}
+
+
+	void OffIsMaterial() { _isMaterial = false; }
 
 
 	void OnCollision(Player& player, Ball* ball) override;
@@ -37,6 +47,7 @@ private:
 	int vel = 5;
 	int health = 3;
 	bool _isActivated = false;
+	bool _isMaterial = false;
 };
 
 #endif // !BLOCK_MOVING_H
